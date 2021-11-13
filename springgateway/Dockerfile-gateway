@@ -1,0 +1,4 @@
+FROM openjdk:8
+MAINTAINER cat
+ADD ./target/gs-gateway-0.1.0.jar /gateway.jar
+RUN chmod +x /gateway.jar

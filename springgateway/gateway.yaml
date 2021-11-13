@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-gateway
+  name: demo-gateway
+  namespace: gateway-system
+spec:
+  selector:
+    matchLabels:
+      app: demo-gateway
+  template:
+    metadata:
+      labels:
+        app: demo-gateway
+    spec:
+      containers:
+      - image: dashanji/gateway:v0.0.1
+        name: gateway
+        command: ["java"]
+        args: ["-jar","/gateway.jar"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-gateway
+  namespace: gateway-system
+spec:
+  type: ClusterIP
+  ports:
+  - name: 9999-tcp
+    port: 9999
+    protocol: TCP
+    targetPort: 9999
+  selector:
+    app: demo-gateway
