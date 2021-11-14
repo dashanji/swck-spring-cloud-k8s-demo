@@ -21,7 +21,7 @@ public class Application {
             .route(p -> p
                 .path("/gateway/**")
                 .filters(f -> f.rewritePath("/gateway(?<segment>.*)", "/${segment}"))
-                .uri("http://demo.skywalking-system:8085"))
+                .uri("http://demo.springboot-system:8085"))
             .build();
     }
 
